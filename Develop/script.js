@@ -1,4 +1,19 @@
 // Assignment code here
+var params = {
+  lowercase: "",
+  uppercase: "",
+  numbers: "",
+  special: ""
+};
+
+var generatePassword = function() {
+  // generate the length
+  defineLength();
+
+  // choose paramaters
+  promptParameters();
+
+}
 
 // length generator
 var defineLength = function() {
@@ -23,7 +38,10 @@ var promptParameters = function() {
   
   //if yes, generate lowercase letters
   if (lowerConfirm) {
-    lowerLetters = "abcdefghijklmnopqrstuvwxyz";
+    params.lowercase = "abcdefghijklmnopqrstuvwxyz";
+  }
+  if (!lowerConfirm) {
+    params.lowercase = "";
   }
 
   // prompt for uppercase letters
@@ -31,7 +49,10 @@ var promptParameters = function() {
 
   // if yes, generate uppercase letters
   if (upperConfirm) {
-    upperLetters = "ABCDEFJHIJKLMNOPQRSTUVWXYZ";
+    params.uppercase = "ABCDEFJHIJKLMNOPQRSTUVWXYZ";
+  }
+  if (!upperConfirm) {
+    params.uppercase = "";
   }
 
   // prompt for numbers
@@ -39,7 +60,10 @@ var promptParameters = function() {
 
   // if yes, generate numbers
   if (numberConfirm) {
-    numbers = "0123456789";
+    params.numbers = "0123456789";
+  }
+  if (!numberConfirm) {
+    params.numbers = "";
   }
 
   // prompt for special characters
@@ -47,23 +71,16 @@ var promptParameters = function() {
 
   // if yes, generate special characters
   if (specialConfirm) {
-    specialChar = "`~!@#$%^&*()_+';:<,>.?/";
+    params.special = "`~!@#$%^&*()_+';:<,>.?/";
+  }
+  if (!specialConfirm) {
+    params.special = "";
   }
   
   if (!lowerConfirm && !upperConfirm && !numberConfirm && !specialConfirm) {
     window.alert("You must choose at least one paramater!");
     promptParameters();
   }
-}
-
-var generatePassword = function() {
-  // generate the length
-  defineLength();
-
-  // choose paramaters
-  promptParameters();
-  
-  console.log(lowerLetters, upperLetters, specialChar, passLength);
 
 }
 
