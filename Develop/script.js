@@ -6,13 +6,38 @@ var params = {
   special: ""
 };
 
-var generatePassword = function() {
+var passLength = "";
+
+function generatePassword (pWordLength) {
   // generate the length
   defineLength();
 
   // choose paramaters
   promptParameters();
 
+    
+  function shuffle(allChar) {
+    var arr = allChar.split('');
+    var n = arr.length;
+
+    for(var i=0 ; i< passLength - 1 ; ++i) {
+      var j = passLength;
+
+      var temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+    }
+
+    allChar = arr.join('');
+    return allChar;
+  }
+
+  var allChar = params.lowercase + params.uppercase + params.numbers + params.special;
+
+  allChar = shuffle(allChar);
+  
+  console.log(allChar);
+  writePassword();
 }
 
 // length generator
@@ -90,7 +115,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = generatePassword(passLength);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
