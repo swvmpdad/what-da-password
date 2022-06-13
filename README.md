@@ -10,7 +10,7 @@ and special characters and generate a password.
 
 ## Snapshot of the site
 
-<img src="./develop/snapshot1.jpg" alt="a screenshot of the site" width=500px height=250px>
+<img src="./Develop/snapshot1.jpg" alt="a screenshot of the site" width=500px height=250px>
 
 ## Website
 https://swvmpdad.github.io/what-da-password/
