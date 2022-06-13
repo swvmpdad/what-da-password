@@ -6,6 +6,8 @@ var params = {
   special: ""
 };
 
+var allChar = null;
+
 var passLength = "";
 
 function generatePassword (pWordLength) {
@@ -37,7 +39,7 @@ function generatePassword (pWordLength) {
   allChar = shuffle(allChar);
   
   console.log(allChar);
-  writePassword();
+  return allChar;
 }
 
 // length generator
