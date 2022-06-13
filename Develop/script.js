@@ -5,25 +5,23 @@ var params = {
   numbers: "",
   special: ""
 };
-
 var allChar = null;
+var passLength = 0;
 
-var passLength = "";
-
-function generatePassword (pWordLength) {
+function generatePassword () {
   // generate the length
   defineLength();
 
   // choose paramaters
   promptParameters();
 
-    
+  // shuffle the allChar string  
   function shuffle(allChar) {
     var arr = allChar.split('');
     var n = arr.length;
 
-    for(var i=0 ; i< passLength - 1 ; ++i) {
-      var j = passLength;
+    for(var i=n - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
 
       var temp = arr[i];
       arr[i] = arr[j];
@@ -34,11 +32,16 @@ function generatePassword (pWordLength) {
     return allChar;
   }
 
+  // combine selections of parameters
   var allChar = params.lowercase + params.uppercase + params.numbers + params.special;
 
+  // shuffle the string
   allChar = shuffle(allChar);
   
-  console.log(allChar);
+  // limit the password to the selected length
+  if(allChar.length > passLength) allChar = allChar.substring(0,passLength);
+
+  // return the randomized password
   return allChar;
 }
 
@@ -65,7 +68,7 @@ var promptParameters = function() {
   
   //if yes, generate lowercase letters
   if (lowerConfirm) {
-    params.lowercase = "abcdefghijklmnopqrstuvwxyz";
+    params.lowercase = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
   }
   if (!lowerConfirm) {
     params.lowercase = "";
@@ -76,7 +79,7 @@ var promptParameters = function() {
 
   // if yes, generate uppercase letters
   if (upperConfirm) {
-    params.uppercase = "ABCDEFJHIJKLMNOPQRSTUVWXYZ";
+    params.uppercase = "ABCDEFJHIJKLMNOPQRSTUVWXYZABCDEFJHIJKLMNOPQRSTUVWXYZABCDEFJHIJKLMNOPQRSTUVWXYZABCDEFJHIJKLMNOPQRSTUVWXYZABCDEFJHIJKLMNOPQRSTUVWXYZABCDEFJHIJKLMNOPQRSTUVWXYZ";
   }
   if (!upperConfirm) {
     params.uppercase = "";
@@ -87,7 +90,7 @@ var promptParameters = function() {
 
   // if yes, generate numbers
   if (numberConfirm) {
-    params.numbers = "0123456789";
+    params.numbers = "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789";
   }
   if (!numberConfirm) {
     params.numbers = "";
@@ -98,7 +101,7 @@ var promptParameters = function() {
 
   // if yes, generate special characters
   if (specialConfirm) {
-    params.special = "`~!@#$%^&*()_+';:<,>.?/";
+    params.special = "`~!@#$%^&*()_+';:<,>.?/`~!@#$%^&*()_+';:<,>.?/`~!@#$%^&*()_+';:<,>.?/`~!@#$%^&*()_+';:<,>.?/`~!@#$%^&*()_+';:<,>.?/`~!@#$%^&*()_+';:<,>.?/";
   }
   if (!specialConfirm) {
     params.special = "";
@@ -117,7 +120,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword(passLength);
+  var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
